@@ -5,8 +5,10 @@ Work Mac setup: Homebrew packages, apps, shell and tool configs.
 ## New Mac
 
 ```sh
-git clone git@github.com:anyset-bot/dotfiles.git ~/dotfiles && ~/dotfiles/install.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/anyset-bot/dotfiles/main/install.sh)"
 ```
+
+It clones this repo to `~/dotfiles` and runs `install.sh` from there. Sign in to the App Store first so the App Store apps install.
 
 ## Day to day
 
@@ -15,6 +17,9 @@ git clone git@github.com:anyset-bot/dotfiles.git ~/dotfiles && ~/dotfiles/instal
 
 Configs in `home/` are symlinked into `~`, so edits on this Mac show up in `git diff`.
 An existing file that differs is moved to `<file>.backup-<timestamp>` before linking.
+
+macOS settings (Dock, Finder, trackpad, languages, Rectangle, login items) live in
+`home/.config/mise/conf.d/macos.toml`. `mise bootstrap macos defaults status` shows any drift.
 
 ## Not tracked
 

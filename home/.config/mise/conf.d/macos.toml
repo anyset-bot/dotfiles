@@ -1,0 +1,76 @@
+[bootstrap.settings.macos.dock]
+autohide = true
+magnification = true
+
+[bootstrap.settings.macos.finder]
+preferred_view_style = "column"
+sort_folders_first = true
+
+[bootstrap.settings.macos.trackpad]
+tap_to_click = true
+three_finger_drag = true
+
+[bootstrap.settings.macos.login_items]
+apps = ["/Applications/CopyClip.app", "/Applications/Hex.app", "/Applications/KeepingYouAwake.app", "/Applications/Tailscale.app"]
+
+# Dock stores sizes as floats; the named tilesize/largesize keys write integers
+[bootstrap.settings.macos.defaults."com.apple.dock"]
+tilesize = 42.0
+largesize = 74.0
+expose-group-apps = true
+showAppExposeGestureEnabled = true
+wvous-br-corner = 4
+wvous-br-modifier = 0
+
+[bootstrap.settings.macos.defaults."com.apple.finder"]
+_FXSortFoldersFirstOnDesktop = true
+NewWindowTarget = "PfDe"
+FXRemoveOldTrashItems = true
+ShowHardDrivesOnDesktop = true
+ShowMountedServersOnDesktop = true
+
+[bootstrap.settings.macos.defaults."com.apple.WindowManager"]
+EnableTilingByEdgeDrag = false
+EnableTopTilingByEdgeDrag = false
+EnableTilingOptionAccelerator = false
+EnableTiledWindowMargins = false
+HideDesktop = true
+
+# Three-finger drag moves the three-finger swipes to four fingers
+[bootstrap.settings.macos.defaults."com.apple.AppleMultitouchTrackpad"]
+TrackpadThreeFingerHorizSwipeGesture = 0
+TrackpadThreeFingerVertSwipeGesture = 0
+
+[bootstrap.settings.macos.defaults."com.apple.driver.AppleBluetoothMultitouch.trackpad"]
+TrackpadThreeFingerHorizSwipeGesture = 0
+TrackpadThreeFingerVertSwipeGesture = 0
+
+[bootstrap.settings.macos.defaults.NSGlobalDomain]
+AppleInterfaceStyleSwitchesAutomatically = true
+AppleLanguages = ["en-US", "ru-US", "he-US"]
+AppleMeasurementUnits = "Centimeters"
+AppleMetricUnits = true
+AppleTemperatureUnit = "Celsius"
+NSGlassTintAmount = 1.0
+NSGlassBuddyTintAmount = 1.0
+
+[bootstrap.settings.macos.defaults."com.apple.HIToolbox"]
+AppleEnabledInputSources = [
+  { "Bundle ID" = "com.apple.CharacterPaletteIM", InputSourceKind = "Non Keyboard Input Method" },
+  { InputSourceKind = "Keyboard Layout", "KeyboardLayout ID" = 0, "KeyboardLayout Name" = "U.S." },
+  { InputSourceKind = "Keyboard Layout", "KeyboardLayout ID" = 19456, "KeyboardLayout Name" = "Russian" },
+  { InputSourceKind = "Keyboard Layout", "KeyboardLayout ID" = -18432, "KeyboardLayout Name" = "Hebrew" },
+]
+
+[bootstrap.settings.macos.defaults."com.knollsoft.Rectangle"]
+alternateDefaultShortcuts = false
+allowAnyShortcut = true
+launchOnLogin = true
+wasWelcomeDisplayed = true
+internalTilingNotified = true
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "NSGlobalDomain"
+key = "com.apple.mouse.tapBehavior"
+value = 1
+host = "current"
