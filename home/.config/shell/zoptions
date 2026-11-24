@@ -1,12 +1,7 @@
-bindkey -e
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
-bindkey "^[[C" forward-char
-bindkey "^[[D" backward-char
 
-setopt COMBINING_CHARS
 setopt MENU_COMPLETE
-setopt AUTO_MENU
 setopt COMPLETE_IN_WORD
 setopt ALWAYS_TO_END
 setopt CHASE_LINKS
@@ -21,11 +16,8 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=* l:|=*'
-zstyle ':completion:*' match-hidden-files off
 zstyle ':completion:*' list-prompt ''
-zstyle ':completion:*' select-prompt ''
 zstyle ':completion:*' file-list all
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 typeset -U path fpath
 fpath=(/opt/homebrew/share/zsh/site-functions(N) $fpath)
