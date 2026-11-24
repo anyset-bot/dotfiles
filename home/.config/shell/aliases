@@ -1,0 +1,52 @@
+if command -v eza &> /dev/null; then
+  alias ls='eza -lh --group-directories-first --icons=auto'
+  alias lsa='ls -a'
+  alias lt='eza --tree --level=2 --long --icons --git'
+  alias lta='lt -a'
+fi
+
+alias ff="fzf --preview 'bat --style=numbers --color=always {} 2>/dev/null || cat {}'"
+alias eff='$EDITOR "$(ff)"'
+# GNU find has -printf; BSD/macOS find needs stat -f
+_files_by_mtime() {
+  if find . -maxdepth 0 -printf '' 2>/dev/null; then
+    find . -type f -printf '%T@\t%p\n'
+  else
+    find . -type f -exec stat -f '%m%t%N' {} +
+  fi | sort -rn | cut -f2-
+}
+sff() { if [ $# -eq 0 ]; then echo "Usage: sff <destination> (e.g. sff host:/tmp/)"; return 1; fi; local file; file=$(_files_by_mtime | ff) && [ -n "$file" ] && scp "$file" "$1"; }
+
+if command -v zoxide &> /dev/null; then
+  alias cd="zd"
+  zd() {
+    if (( $# == 0 )); then
+      builtin cd ~ || return
+    elif [[ -d $1 ]]; then
+      builtin cd "$1" || return
+    else
+      if ! z "$@"; then
+        echo "Error: Directory not found"
+        return 1
+      fi
+
+      printf "\U000F17A9 "
+      pwd
+    fi
+  }
+fi
+
+alias oc='opencode'
+alias cx='printf "\033[2J\033[3J\033[H" && claude --permission-mode bypassPermissions'
+alias cy='codex -s danger-full-access -a never'
+alias d='docker'
+alias n='nano'
+
+alias g='git'
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gcad='git commit -a --amend'
+
+alias lzg='lazygit'
+alias mup='MISE_MINIMUM_RELEASE_AGE=0 mise up'
+alias bup='brew upgrade --greedy -y && brew cleanup'

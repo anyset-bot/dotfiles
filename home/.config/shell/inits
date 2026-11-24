@@ -1,0 +1,38 @@
+_shell_name="${ZSH_VERSION:+zsh}"
+_shell_name="${_shell_name:-bash}"
+
+if command -v mise &>/dev/null; then
+  eval "$(mise activate "$_shell_name")"
+fi
+
+if command -v starship &>/dev/null; then
+  if [[ "$_shell_name" == "bash" ]]; then
+    # Clear stale readline state that garbles the prompt after abnormal exits
+    __sanitize_prompt() { printf '\r\033[K'; }
+    PROMPT_COMMAND="__sanitize_prompt${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+  fi
+  eval "$(starship init "$_shell_name")"
+fi
+
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init "$_shell_name")"
+fi
+
+if command -v try &>/dev/null; then
+  eval "$(try init ~/Work/tries)"
+fi
+
+# fzf >= 0.48 prints its own integration; older distro packages ship files instead
+if command -v fzf &>/dev/null; then
+  if _fzf_init="$(fzf --"$_shell_name" 2>/dev/null)"; then
+    eval "$_fzf_init"
+  else
+    for _f in /usr/share/fzf/{completion,key-bindings}."$_shell_name"; do
+      [[ -f $_f ]] && source "$_f"
+    done
+    unset _f
+  fi
+  unset _fzf_init
+fi
+
+unset _shell_name

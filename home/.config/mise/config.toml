@@ -1,0 +1,15 @@
+[env]
+_.path = "{{ cwd }}/bin"
+
+[settings]
+experimental = true
+idiomatic_version_file_enable_tools = ["ruby"]
+minimum_release_age_excludes = ["github:anyset-ai/asf"]
+
+[settings.github]
+credential_command = "gh auth token"
+
+[tools]
+bun = "1.4.4"
+"github:anyset-ai/asf" = "latest"
+node = "lts"
